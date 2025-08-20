@@ -5,10 +5,10 @@ import joblib
 import numpy as np
 
 # Load saved models
-heart_model = joblib.load("models/heart_model.pkl")
-diabetes_model = joblib.load("models/diabetes_model.pkl")
-cancer_model = joblib.load("models/cancer_model.pkl")
-cancer_label_map = joblib.load("models/cancer_label_map.pkl")  # if you need labels
+heart_model = joblib.load("model/heart_model.pkl")
+diabetes_model = joblib.load("model/diabetes_model.pkl")
+cancer_model = joblib.load("model/cancer_model.pkl")
+cancer_label_map = joblib.load("model/cancer_label_map.pkl")  # if you need labels
 
 st.set_page_config(page_title="Health Disease Prediction", layout="wide")
 
@@ -224,4 +224,5 @@ elif choice == "Cancer":
 
         pred = cancer_model.predict(X_df)[0]
         label = {0: "✅ Benign (Non-Cancerous)", 1: "⚠️ Malignant (Cancerous)"}[int(pred)]
+
         (st.error if pred == 1 else st.success)(label)
